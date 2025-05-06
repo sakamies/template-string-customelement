@@ -1,5 +1,7 @@
 # Template String Custom Element
 
+## Usage
+
 Import the element and define it.
 
 ```js
