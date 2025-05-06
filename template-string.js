@@ -35,7 +35,6 @@ export class TemplateStringElement extends HTMLScriptElement {
     }
   }
 
-
   // Cached last render and escaped template.
   get value() {return this.#value}
   get template() {return this.#template}
