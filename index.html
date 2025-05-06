@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title></title>
-  <script src="custom-elements-es.js"></script>
+  <script src="./custom-elements-es.js"></script>
   <script type="module">
-    import { TemplateStringElement } from '/template-string.js'
+    import { TemplateStringElement } from './template-string.js'
     customElements.define('template-string', TemplateStringElement, { extends: "script" })
 
     document.addEventListener('DOMContentLoaded', () => {
