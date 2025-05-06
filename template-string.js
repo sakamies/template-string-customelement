@@ -31,7 +31,6 @@ export class TemplateStringElement extends HTMLElement {
       return value
     } catch (e) {
       console.error('Template rendering error:', e)
-      return ''
     }
   }
 
