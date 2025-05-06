@@ -1,19 +1,19 @@
-export class TemplateStringElement extends HTMLScriptElement {
-  #template  = ''
+export class TemplateStringElement extends HTMLElement {
+  #template
   #value
 
   constructor() {super()}
 
-  #setTemplate() {
-    if (this.#template === '') {
-      this.#template = this.text.replaceAll('`', '&#96;')
+  #setTemplate = () => {
+    if (!this.#template) {
+      this.#template = this.firstElementChild?.text?.replaceAll('`', '&#96;')
     }
   }
 
   connectedCallback() {
     this.#setTemplate()
     if (document.readyState !== "complete") {
-      document.addEventListener("DOMContentLoaded", this.#setTemplate.bind(this))
+      document.addEventListener("DOMContentLoaded", this.#setTemplate)
     }
   }
 

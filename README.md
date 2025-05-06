@@ -6,19 +6,21 @@ Import the element and define it.
 
 ```js
 import { TemplateStringElement } from '/template-string.js'
-customElements.define('template-string', TemplateStringElement, { extends: "script" })
+customElements.define('template-string', TemplateStringElement)
 ```
 
-Write a naked template string inside a script tag with this custom element. It's nice because you can write your template in your html file with html syntax highlighting, but it's a real javascript template literal.
+Write a naked template string inside a script tag with this custom element. It's nice because you can write your template in your html file with html syntax highlighting, but it's still a real javascript template literal.
 
 ```html
-<script id="template" is="template-string" type="text/html">
-  <b>Hello</b>, <i>${name.toUpperCase()}</i>
-  <br>
-  2 + 2 = ${2 + 2}
-  <br>
-  `backticks are escaped`
-</script>
+<template-string id="template">
+  <script type="text/html">
+    <b>Hello</b>, <i>${name.toUpperCase()}</i>
+    <br>
+    2 + 2 = ${2 + 2}
+    <br>
+    `backticks are escaped`
+  </script>
+</template-string>
 ```
 
 Render it with some data.
@@ -45,15 +47,19 @@ The rendered template will be.
 
 ## Caveats
 
-### Requires [Custom Elements Polyfill](https://github.com/ungap/custom-elements) in Safari.
+This element is so simple that there has to be a thousand thingys like this already, but it's a fun exercise.
 
-Safari doesn't support extending built in elements as custom elements and probably for good reasons, but I couldn't figure out another way to have inert html in the document. Template elements don't allow reading their content as text, so that's a no go. The final way to go might be to have this be just a render function without being a custom element, but custom elements are just so nice and self contained.
+## Can't extend built in elements
 
-Anyway, the polyfill will handle extended built ins just fine in Safari and is not a big overhead.
+Extending the script tag to be a custom element with `<script is="template-string">` would work in browsers other than Safari. They have good reasons why they say doing that is a bad idea though. So this needs to be a nested script tag inside a custom element for now.
 
 ### Not a replacement for a reactive framework
 
-This is great for simple cases and really I intend to use this for pages where I want to add some elements to a page based on a template. Not for realtime nested dom tree rendering. I like static pages.
+This is great for simple cases and really I intend to use this for pages where I want to add some elements to a page based on a template. Not for realtime nested dom tree rendering. This only renders Javascript template string literals, doesn't deal with the DOM or html on its own.
+
+You can of course render nested templates if you need to, should work just fine.
+
+I really like simple static pages.
 
 ## Licence, NPM module?
 
