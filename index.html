@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <script src="custom-elements-es.js"></script>
+  <script type="module">
+    import { TemplateStringElement } from '/template-string.js'
+    customElements.define('template-string', TemplateStringElement, { extends: "script" })
+
+    document.addEventListener('DOMContentLoaded', () => {
+      output.innerHTML = template.render({ name: input.value })
+    })
+
+    document.addEventListener('input', e => {
+      output.innerHTML = template.render({ name: input.value })
+    })
+  </script>
+</head>
+<body>
+  <h1>Template String Custom Element</h1>
+
+  <p>
+    <label for="name">Name</label>
+    <input id="name" name="name" value="Alice">
+  </p>
+
+  <script id="template" is="template-string" type="text/html">
+    <b>Hello</b>, <i>${name.toUpperCase()}</i>
+    <br>
+    2 + 2 = ${2 + 2}
+    <br>
+    `backticks are escaped`
+  </script>
+
+  <div id="output"></div>
+</body>
+</html>
