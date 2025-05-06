@@ -33,6 +33,16 @@ Maybe set that rendered html somewhere. Maybe render any old string, doesn't hav
 someElement.innerHTML = output
 ```
 
+The rendered template will be.
+
+```html
+<b>Hello</b>, <i>ALIVE</i>
+<br>
+2 + 2 = 4
+<br>
+&#96;backticks are escaped&#96;
+```
+
 ## Caveats
 
 ### Requires [Custom Elements Polyfill](https://github.com/ungap/custom-elements) in Safari.
